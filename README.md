@@ -24,3 +24,17 @@ Needlex.getAngle({val: 150, oveflow: true, degrees: true}); // 270.0
 ```
 
 See test/getAngle.js for more examples.
+
+
+### getCoordinates(angle=0, r=100, x0=100, y0=100, degrees=false)
+Returns {x,y} coordinates for the angle, coordinates and measures provided.
+Both plain arguments and params object approaches allowed.
+
+Examples:
+```
+Needlex.getCoordinates(0); // {x: 0, y: 100}
+Needlex.getCoordinates(Math.PI); // {x: 200, y: 100}
+Needlex.getCoordinates(Math.PI*.5); // {x: 100, y: 0}
+```
+
+See test/getCoordinates.js for more examples.
