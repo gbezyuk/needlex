@@ -1,42 +1,33 @@
 var Needlex = {};
 
+function _prepare_params (defaults, signature, args) {
+  var params = defaults || {};
+  var i;
+  if (!args || !args.length || !signature  || !signature.length) {
+    return params;
+  }
+  if (typeof args[0] == 'object') {
+    for (i = 0; i < signature.length; i++) {
+      var key = signature[i];
+      if (key in args[0])
+        params[key] = args[0][key];
+    }
+  } else {
+    for (i = 0; i < Math.min(signature.length, args.length); i++) {
+      params[signature[i]] = args[i];
+    }
+  }
+  return params;
+}
+
 Needlex.getAngle = function () {
-  var params = {
+  var params = _prepare_params({
     min: 0,
     max: 100,
     degrees: false,
     overflow: false,
     val: 0
-  };
-
-  if (!arguments.length) {
-    return 0;
-  }
-
-  if (typeof(arguments[0]) == 'object') {
-    var params_provided = arguments[0];
-    if ('min' in params_provided)
-      params.min = params_provided.min;
-    if ('max' in params_provided)
-      params.max = params_provided.max;
-    if ('degrees' in params_provided)
-      params.degrees = params_provided.degrees;
-    if ('overflow' in params_provided)
-      params.overflow = params_provided.overflow;
-    if ('val' in params_provided)
-      params.val = params_provided.val;
-  } else {
-    if (arguments.length >= 1)
-      params.val = arguments[0];
-    if (arguments.length >= 2)
-      params.max = arguments[1];
-    if (arguments.length >= 3)
-      params.min = arguments[2];
-    if (arguments.length >= 4)
-      params.overflow = arguments[3];
-    if (arguments.length >= 5)
-      params.degrees = arguments[4];
-  }
+  }, ['val', 'max', 'min', 'overflow', 'degrees'], arguments);
 
   if (!params.overflow) {
     if (params.val <= params.min)
@@ -49,42 +40,13 @@ Needlex.getAngle = function () {
 };
 
 Needlex.getCoordinates = function () {
-  var params = {
+  var params = _prepare_params({
     x0: 100,
     y0: 100,
     r: 100,
     angle: 0,
     degrees: false,
-  };
-
-  if (!arguments.length) {
-    return 0;
-  }
-
-  if (typeof(arguments[0]) == 'object') {
-    var params_provided = arguments[0];
-    if ('x0' in params_provided)
-      params.x0 = params_provided.x0;
-    if ('y0' in params_provided)
-      params.y0 = params_provided.y0;
-    if ('r' in params_provided)
-      params.r = params_provided.r;
-    if ('angle' in params_provided)
-      params.angle = params_provided.angle;
-    if ('degrees' in params_provided)
-      params.degrees = params_provided.degrees;
-  } else {
-    if (arguments.length >= 1)
-      params.angle = arguments[0];
-    if (arguments.length >= 2)
-      params.r = arguments[1];
-    if (arguments.length >= 3)
-      params.x0 = arguments[2];
-    if (arguments.length >= 4)
-      params.y0 = arguments[3];
-    if (arguments.length >= 5)
-      params.degrees = arguments[4];
-  }
+  }, ['angle', 'r', 'x0', 'y0', 'degrees'], arguments);
 
   if (params.degrees) {
     params.angle = params.angle / 180 * Math.PI;
