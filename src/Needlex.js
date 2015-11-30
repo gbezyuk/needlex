@@ -20,7 +20,7 @@ Needlex.getAngle = function () {
     if ('max' in params_provided)
       params.max = params_provided.max;
     if ('degrees' in params_provided)
-      params.degreees = params_provided.degrees;
+      params.degrees = params_provided.degrees;
     if ('overflow' in params_provided)
       params.overflow = params_provided.overflow;
     if ('val' in params_provided)
@@ -42,7 +42,7 @@ Needlex.getAngle = function () {
     if (params.val <= params.min)
       return 0;
     if (params.val >= params.max)
-      return params.degrees ? 180 : Math.PI;
+      return params.degrees ? 180.0 : Math.PI;
   }
 
   return (params.degrees ? 180.0 : Math.PI) * (params.val - params.min) / (params.max - params.min);
