@@ -20,7 +20,7 @@ Examples:
 Needlex.getAngle(); // 0
 Needlex.getAngle(50); // Math.PI/2
 Needlex.getAngle(40, 120); // Math.PI/3
-Needlex.getAngle({val: 150, oveflow: true, degrees: true}); // 270.0
+Needlex.getAngle({val: 150, overflow: true, degrees: true}); // 270.0
 ```
 
 See test/getAngle.js for more examples.
