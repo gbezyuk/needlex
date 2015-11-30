@@ -1,5 +1,6 @@
 # Needlex
 A set of tools for speedometer-needle-like animations with javascript
+[![Build Status](https://travis-ci.org/gbezyuk/needlex.png?branch=master)](https://travis-ci.org/gbezyuk/needlex)
 
 ## How to use
 
