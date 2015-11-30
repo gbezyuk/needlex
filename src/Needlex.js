@@ -66,26 +66,33 @@ Needlex.animateNeedle = function () {
     r: 100,
     start_value: 0,
     target_value: 90,
-    degrees: true,
+    max_value: 90,
+    min_value: 90,
     steps: 50,
     on_animation: null,
     on_finish: null
-  }, ['x0', 'y0', 'r', 'start_value', 'target_value', 'degrees',
+  }, ['x0', 'y0', 'r', 'start_value', 'target_value', 'max_value', 'min_value',
   'steps', 'on_animation', 'on_finish'], arguments);
 
   var current_step = 0;
   var current_value = params.start_value;
   var delta = (params.target_value - params.start_value) / params.steps;
+  var coords = Needlex.getCoordinates(
+    Needlex.getAngle(current_value, max_value, min_value),
+    params.r, params.x0, params.y0);
   var t = setInterval(function () {
     current_step ++;
     current_value += delta;
+    coords = Needlex.getCoordinates(
+      Needlex.getAngle(current_value, max_value, min_value),
+      params.r, params.x0, params.y0);
     if (typeof(on_animation) == 'function') {
-      on_animation(current_value, current_step, params.steps);
+      on_animation(coords, current_value, current_step, params);
     }
     if (current_step >= params.steps) {
       clearInterval(t);
       if (typeof(on_finish) == 'function') {
-        on_finish(params);
+        on_finish(coords, params);
       }
     }
   }, 0);
