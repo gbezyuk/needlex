@@ -1,0 +1,25 @@
+{
+  "name": "needlex",
+  "version": "0.0.1",
+  "description": "A set of tools for speedometer-needle-like animations with javascript",
+  "main": "dist/needlex.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gbezyuk/needlex.git"
+  },
+  "keywords": [
+    "needle",
+    "speedometer",
+    "animation",
+    "javascript"
+  ],
+  "author": "Grigoriy Bezyuk",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/gbezyuk/needlex/issues"
+  },
+  "homepage": "https://github.com/gbezyuk/needlex#readme"
+}
