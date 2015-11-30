@@ -2,7 +2,7 @@
   "name": "needlex",
   "version": "0.0.1",
   "description": "A set of tools for speedometer-needle-like animations with javascript",
-  "main": "dist/needlex.js",
+  "main": "src/needlex.js",
   "scripts": {
     "test": "mocha"
   },
