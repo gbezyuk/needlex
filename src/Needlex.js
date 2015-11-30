@@ -59,4 +59,37 @@ Needlex.getCoordinates = function () {
 
 };
 
+Needlex.animateNeedle = function () {
+  var params = _prepare_params({
+    x0: 100,
+    y0: 100,
+    r: 100,
+    start_value: 0,
+    target_value: 90,
+    degrees: true,
+    steps: 50,
+    on_animation: null,
+    on_finish: null
+  }, ['x0', 'y0', 'r', 'start_value', 'target_value', 'degrees',
+  'steps', 'on_animation', 'on_finish'], arguments);
+
+  var current_step = 0;
+  var current_value = params.start_value;
+  var delta = (params.target_value - params.start_value) / params.steps;
+  var t = setInterval(function () {
+    current_step ++;
+    current_value += delta;
+    if (typeof(on_animation) == 'function') {
+      on_animation(current_value, current_step, params.steps);
+    }
+    if (current_step >= params.steps) {
+      clearInterval(t);
+      if (typeof(on_finish) == 'function') {
+        on_finish(params);
+      }
+    }
+  }, 0);
+  // TODO: speed control, requestAnimationFrame (?)
+};
+
 module.exports = Needlex;
