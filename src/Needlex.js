@@ -78,25 +78,29 @@ Needlex.animateNeedle = function () {
   var current_value = params.start_value;
   var delta = (params.target_value - params.start_value) / params.steps;
   var coords = Needlex.getCoordinates(
-    Needlex.getAngle(current_value, max_value, min_value),
+    Needlex.getAngle(current_value, params.max_value, params.min_value),
     params.r, params.x0, params.y0);
   var t = setInterval(function () {
     current_step ++;
     current_value += delta;
     coords = Needlex.getCoordinates(
-      Needlex.getAngle(current_value, max_value, min_value),
+      Needlex.getAngle(current_value, params.max_value, params.min_value),
       params.r, params.x0, params.y0);
-    if (typeof(on_animation) == 'function') {
-      on_animation(coords, current_value, current_step, params);
+    if (typeof(params.on_animation) == 'function') {
+      params.on_animation(coords, current_value, current_step, params);
     }
     if (current_step >= params.steps) {
       clearInterval(t);
-      if (typeof(on_finish) == 'function') {
-        on_finish(coords, params);
+      if (typeof(params.on_finish) == 'function') {
+        params.on_finish(coords, params);
       }
     }
-  }, 0);
+  }, 10);
   // TODO: speed control, requestAnimationFrame (?)
 };
 
-module.exports = Needlex;
+try {
+  module.exports = Needlex;
+} catch (e) {
+  console.log('running in browser');
+}
