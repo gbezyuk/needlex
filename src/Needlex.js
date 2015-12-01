@@ -1,27 +1,8 @@
 var Needlex = {};
-
-function _prepare_params (defaults, signature, args) {
-  var params = defaults || {};
-  var i;
-  if (!args || !args.length || !signature  || !signature.length) {
-    return params;
-  }
-  if (typeof args[0] == 'object') {
-    for (i = 0; i < signature.length; i++) {
-      var key = signature[i];
-      if (key in args[0])
-        params[key] = args[0][key];
-    }
-  } else {
-    for (i = 0; i < Math.min(signature.length, args.length); i++) {
-      params[signature[i]] = args[i];
-    }
-  }
-  return params;
-}
+var Yanus = require('Yanus');
 
 Needlex.getAngle = function () {
-  var params = _prepare_params({
+  var params = Yanus({
     min: 0,
     max: 100,
     degrees: false,
@@ -40,7 +21,7 @@ Needlex.getAngle = function () {
 };
 
 Needlex.getCoordinates = function () {
-  var params = _prepare_params({
+  var params = Yanus({
     x0: 100,
     y0: 100,
     r: 100,
@@ -60,7 +41,7 @@ Needlex.getCoordinates = function () {
 };
 
 Needlex.animateNeedle = function () {
-  var params = _prepare_params({
+  var params = Yanus({
     x0: 100,
     y0: 100,
     r: 100,
