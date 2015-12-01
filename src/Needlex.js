@@ -1,8 +1,8 @@
 var Needlex = {};
-var Yanus = require('Yanus');
+var yanus = require('yanus');
 
 Needlex.getAngle = function () {
-  var params = Yanus({
+  var params = yanus({
     min: 0,
     max: 100,
     degrees: false,
@@ -21,7 +21,7 @@ Needlex.getAngle = function () {
 };
 
 Needlex.getCoordinates = function () {
-  var params = Yanus({
+  var params = yanus({
     x0: 100,
     y0: 100,
     r: 100,
@@ -41,7 +41,7 @@ Needlex.getCoordinates = function () {
 };
 
 Needlex.animateNeedle = function () {
-  var params = Yanus({
+  var params = yanus({
     x0: 100,
     y0: 100,
     r: 100,
