@@ -61,7 +61,8 @@ Needlex.animateNeedle = function () {
   var coords = Needlex.getCoordinates(
     Needlex.getAngle(current_value, params.max_value, params.min_value),
     params.r, params.x0, params.y0);
-  var t = setInterval(function () {
+
+  function animator () {
     current_step ++;
     current_value += delta;
     coords = Needlex.getCoordinates(
@@ -71,13 +72,15 @@ Needlex.animateNeedle = function () {
       params.on_animation(coords, current_value, current_step, params);
     }
     if (current_step >= params.steps) {
-      clearInterval(t);
       if (typeof(params.on_finish) == 'function') {
         params.on_finish(coords, params);
       }
+    } else {
+      requestAnimationFrame(animator);
     }
-  }, 10);
-  // TODO: speed control, requestAnimationFrame (?)
+  }
+
+  requestAnimationFrame(animator);
 };
 
 try {
